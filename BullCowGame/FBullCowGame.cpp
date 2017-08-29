@@ -27,8 +27,8 @@ void FBullCowGame::Reset()
 
 EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 {
-	
-	if (false) { //If the guess isn't isogram
+	// TODO cenas
+	if (!IsIsogram(Guess)) { //If the guess isn't isogram
 		return EGuessStatus::Not_Isogram;
 	}
 	else if (false) { //If the guess isn't all lowercase
@@ -77,4 +77,27 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
 	}
 
 	return BullCowCount;
+}
+
+bool FBullCowGame::IsIsogram(FString Word) const
+{
+	
+	//treat 0 and 1 letter words as isograms
+	if (Word.length() <= 1) { return true; }
+
+	//Using a map to verify is the word is isogram.
+	//We are adding letters to the map and if the letter is repeated we will know it and stop
+	TMap<char, bool> LettersSeen;
+	
+	for (auto Letter : Word) {
+		Letter = tolower(Letter);
+		if (LettersSeen[Letter]) { // if letter existes
+			return false; //we do NOT have an isogram
+		}
+		else {
+			LettersSeen[Letter] = true; //unreal uses .add()
+		}
+	}
+
+	return true; // for example in cases where /0 is entered
 }

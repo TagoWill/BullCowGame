@@ -15,7 +15,7 @@ void PrintIntro();
 void PlayGame();
 FText GetValidGuess();
 bool AskToPlayAgain();
-void PrintGameSummary(bool);
+void PrintGameSummary();
 
 
 FBullCowGame BCGame;
@@ -51,11 +51,11 @@ void PlayGame()
 		//print number of bulls and cows
 	
 		std::cout << "Bulls = " << BullCowCount.Bulls;
-		std::cout << ". Cows\n = " << BullCowCount.Cows << std::endl;
+		std::cout << ". Cows = " << BullCowCount.Cows << std::endl;
 
 	}
 
-	PrintGameSummary(BCGame.IsGameWon());
+	PrintGameSummary();
 	return;
 }
 
@@ -127,10 +127,10 @@ bool AskToPlayAgain() {
 
 }
 
-void PrintGameSummary(bool GameState) {
+void PrintGameSummary() {
 
-	if (GameState) {
-		std::cout << "\nYou won" << std::endl;
+	if (BCGame.IsGameWon()) {
+		std::cout << "\nYou win" << std::endl;
 	}
 	else {
 		std::cout << "\nYou lose" << std::endl;

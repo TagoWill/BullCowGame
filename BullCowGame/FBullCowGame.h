@@ -2,6 +2,8 @@
 
 #include <string>
 #include "EStatus.h"
+#include <map>
+#define TMap std::map
 
 using FString = std::string;
 using int32 = int;
@@ -31,5 +33,7 @@ private:
 	int32 MyMaxTries;
 	FString MyHidenWord;
 	bool bGameIsWon;
+
+	bool IsIsogram(FString) const;
 
 };
