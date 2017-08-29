@@ -26,7 +26,7 @@ public:
 
 
 	void Reset();  //TODO: Make a more rich return value.
-	FBullCowCount SubmitGuess(FString Guess);
+	FBullCowCount SubmitValidGuess(FString Guess);
 
 private:
 	int32 MyCurrentTry;

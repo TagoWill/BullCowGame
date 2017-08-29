@@ -45,7 +45,7 @@ void PlayGame()
 		Guess = GetValidGuess();
 	
 		//submit valid guess to the game
-		BullCowCount = BCGame.SubmitGuess(Guess);
+		BullCowCount = BCGame.SubmitValidGuess(Guess);
 		//print number of bulls and cows
 	
 		std::cout << "Bulls = " << BullCowCount.Bulls;
@@ -70,6 +70,7 @@ void PrintIntro() {
 FText GetValidGuess() {
 
 	EGuessStatus Status = EGuessStatus::Invalid_Status;
+	FText Guess = "";
 
 	do {
 		int32 CurrentTry = BCGame.GetCurrentTry();
@@ -78,7 +79,6 @@ FText GetValidGuess() {
 		std::cout << CurrentTry;
 		std::cout << ". Enter your guess: ";
 
-		FText Guess = "";
 		std::getline(std::cin, Guess);
 
 		// TODO Se if you can put this in the object
@@ -106,11 +106,11 @@ FText GetValidGuess() {
 
 			break;
 		default:
-			return Guess;
+			break;
 		}
 		std::cout << std::endl;
 	} while (Status != EGuessStatus::OK);
-	return "";
+	return Guess;
 }
 
 bool AskToPlayAgain() {
