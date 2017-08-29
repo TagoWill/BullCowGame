@@ -5,7 +5,7 @@
 #pragma once
 
 
-enum class EWordStatus
+enum class EGuessStatus
 {
 	OK,
 	Not_Isogram,

@@ -22,7 +22,7 @@ public:
 
 
 	bool IsGameWon() const;
-	EWordStatus CheckGuessValidity(FString) const;
+	EGuessStatus CheckGuessValidity(FString Guess) const;
 
 
 	void Reset();  //TODO: Make a more rich return value.

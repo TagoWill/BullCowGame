@@ -28,9 +28,25 @@ bool FBullCowGame::IsGameWon() const
 	return false;
 }
 
-EWordStatus FBullCowGame::CheckGuessValidity(FString) const
+EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 {
-	return EWordStatus::OK;
+	
+	if (false) { //If the guess isn't isogram
+		return EGuessStatus::Not_Isogram;
+	}
+	else if (false) { //If the guess isn't all lowercase
+		return EGuessStatus::Not_Lowercase;
+	}
+	else if (Guess.compare(MyHidenWord) > 0) { //If the guess lenght is wrong
+		return EGuessStatus::To_Long;
+	}
+	else if (Guess.compare(MyHidenWord) < 0) {
+		return EGuessStatus::To_Short;
+	}
+	else { //otherwise return ok
+		return EGuessStatus::OK;
+	}
+	
 }
 
 // receives a VALID guess, increments tur, and returns Bull and Cow count.
