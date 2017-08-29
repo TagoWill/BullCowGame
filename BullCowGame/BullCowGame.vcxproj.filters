@@ -26,5 +26,8 @@
     <ClInclude Include="FBullCowGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="EStatus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

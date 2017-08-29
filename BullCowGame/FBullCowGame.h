@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "EStatus.h"
 
 using FString = std::string;
 using int32 = int;
@@ -21,7 +22,7 @@ public:
 
 
 	bool IsGameWon() const;
-	bool CheckGuessValidity(FString) const;
+	EWordStatus CheckGuessValidity(FString) const;
 
 
 	void Reset();  //TODO: Make a more rich return value.
