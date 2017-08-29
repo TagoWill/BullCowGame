@@ -15,7 +15,7 @@ void PrintIntro();
 void PlayGame();
 FText GetValidGuess();
 bool AskToPlayAgain();
-void PrintGameSummary();
+void PrintGameSummary(bool);
 
 
 FBullCowGame BCGame;
@@ -55,7 +55,8 @@ void PlayGame()
 
 	}
 
-	//TODO add a game summary
+	PrintGameSummary(BCGame.IsGameWon());
+	return;
 }
 
 void PrintIntro() {
@@ -126,7 +127,14 @@ bool AskToPlayAgain() {
 
 }
 
-void PrintGameSummary() {
+void PrintGameSummary(bool GameState) {
+
+	if (GameState) {
+		std::cout << "\nYou won" << std::endl;
+	}
+	else {
+		std::cout << "\nYou lose" << std::endl;
+	}
 
 	return;
 }
