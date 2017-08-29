@@ -59,9 +59,11 @@ void PlayGame()
 
 void PrintIntro() {
 
-	std::cout << "Hello to Bulls and Cows" << std::endl;
-	std::cout << "Can you guess the " << BCGame.GetMaxTries();
-	std::cout << " letter isogram I'm thinking of?" << std::endl;
+	// TODO change to different words
+	std::cout << "Hello to Bulls and Cows\n\n" << std::endl;
+	std::cout << "The word as " << BCGame.GetHiddenWordLenght() << " letters\n";
+	std::cout << "Can you guess in " << BCGame.GetMaxTries();
+	std::cout << " tries the isogram I'm thinking of?" << std::endl;
 	return;
 }
 
