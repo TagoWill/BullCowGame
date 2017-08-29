@@ -3,6 +3,7 @@
 #include <string>
 #include "EStatus.h"
 #include <map>
+#include <ctime>
 #define TMap std::map
 
 using FString = std::string;
@@ -31,7 +32,6 @@ public:
 
 private:
 	int32 MyCurrentTry;
-	int32 MyMaxTries;
 	FString MyHidenWord;
 	bool bGameIsWon;
 	const int32 LENGHT_OF_ARRAY = 6;
