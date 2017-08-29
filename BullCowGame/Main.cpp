@@ -13,7 +13,7 @@ using int32 = int;
 
 void PrintIntro();
 void PlayGame();
-FText GetGuess();
+FText GetValidGuess();
 bool AskToPlayAgain();
 
 
@@ -41,11 +41,9 @@ void PlayGame()
 
 
 	//loop for the number of turns asking for guesses
-	for (int32 i = 0; i < MaxTries; i++) {
-		Guess = GetGuess();
-		
-		EGuessStatus Status = BCGame.CheckGuessValidity(Guess);
-
+	for (int32 i = 0; i < MaxTries; i++) { //TODO a while...
+		Guess = GetValidGuess();
+	
 		//submit valid guess to the game
 		BullCowCount = BCGame.SubmitGuess(Guess);
 		//print number of bulls and cows
@@ -68,21 +66,51 @@ void PrintIntro() {
 	return;
 }
 
-FText GetGuess() {
+//loop until you find a valid guess
+FText GetValidGuess() {
 
-	int32 CurrentTry = BCGame.GetCurrentTry();
+	EGuessStatus Status = EGuessStatus::Invalid_Status;
 
-	std::cout << "Try ";
-	std::cout << CurrentTry;
-	std::cout << ". Enter your guess: ";
+	do {
+		int32 CurrentTry = BCGame.GetCurrentTry();
 
-	FText Guess = "";
-	std::getline(std::cin, Guess);
+		std::cout << "Try ";
+		std::cout << CurrentTry;
+		std::cout << ". Enter your guess: ";
 
+		FText Guess = "";
+		std::getline(std::cin, Guess);
 
+		// TODO Se if you can put this in the object
+		Status = BCGame.CheckGuessValidity(Guess);
+		switch (Status)
+		{
+		case EGuessStatus::Not_Isogram:
+			std::cout << "The word you wrote isnt an isogram\n";
 
-	return Guess;
+			break;
+		case EGuessStatus::Not_Lowercase:
+			std::cout << "The word you wrote is not in lowercase\n";
 
+			break;
+		case EGuessStatus::To_Long:
+			std::cout << "The word you wrote is to long\n";
+			std::cout << "Please insert a " << BCGame.GetHiddenWordLenght();
+			std::cout << " letter word\n";
+
+			break;
+		case EGuessStatus::To_Short:
+			std::cout << "The word you wrote is to short\n";
+			std::cout << "Please insert a " << BCGame.GetHiddenWordLenght();
+			std::cout << " letter word\n";
+
+			break;
+		default:
+			return Guess;
+		}
+		std::cout << std::endl;
+	} while (Status != EGuessStatus::OK);
+	return "";
 }
 
 bool AskToPlayAgain() {

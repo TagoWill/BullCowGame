@@ -37,10 +37,10 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 	else if (false) { //If the guess isn't all lowercase
 		return EGuessStatus::Not_Lowercase;
 	}
-	else if (Guess.compare(MyHidenWord) > 0) { //If the guess lenght is wrong
+	else if (int32(Guess.length()) > GetHiddenWordLenght()) { //If the guess lenght is wrong (to long)
 		return EGuessStatus::To_Long;
 	}
-	else if (Guess.compare(MyHidenWord) < 0) {
+	else if (int32(Guess.length()) < GetHiddenWordLenght()) { //If the guess lenght is wrong (to short)
 		return EGuessStatus::To_Short;
 	}
 	else { //otherwise return ok
