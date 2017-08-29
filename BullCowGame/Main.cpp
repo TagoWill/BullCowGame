@@ -3,13 +3,16 @@
 * Is the view of the user.
 */
 
+#pragma once
+
 #include <iostream>
 #include <string>
 #include "FBullCowGame.h"
 
-
+// to make syntax Unreal friendly
 using FText = std::string;
 using int32 = int;
+
 
 void PrintIntro();
 void PlayGame();
@@ -17,7 +20,7 @@ FText GetValidGuess();
 bool AskToPlayAgain();
 void PrintGameSummary();
 
-
+//Initialize game object
 FBullCowGame BCGame;
 
 int main()
@@ -36,7 +39,7 @@ void PlayGame()
 {
 	BCGame.Reset();
 
-	int32 MaxTries = BCGame.GetMaxTries(); //TODO change to dynamic
+	int32 MaxTries = BCGame.GetMaxTries();
 	FText Guess = "";
 	FBullCowCount BullCowCount;
 

@@ -30,7 +30,7 @@ void FBullCowGame::Reset()
 
 EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 {
-	// TODO cenas
+
 	if (!IsIsogram(Guess)) { //If the guess isn't isogram
 		return EGuessStatus::Not_Isogram;
 	}
