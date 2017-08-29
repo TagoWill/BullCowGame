@@ -15,6 +15,7 @@ void PrintIntro();
 void PlayGame();
 FText GetValidGuess();
 bool AskToPlayAgain();
+void PrintGameSummary();
 
 
 FBullCowGame BCGame;
@@ -35,13 +36,14 @@ void PlayGame()
 {
 	BCGame.Reset();
 
-	int32 MaxTries = BCGame.GetMaxTries();
+	int32 MaxTries = BCGame.GetMaxTries(); //TODO change to dynamic
 	FText Guess = "";
 	FBullCowCount BullCowCount;
 
 
-	//loop for the number of turns asking for guesses
-	for (int32 i = 0; i < MaxTries; i++) { //TODO a while...
+	//loop asking for guesses while the game is NOT won
+	// and there still tries left
+	while(!BCGame.IsGameWon() && BCGame.GetCurrentTry() < MaxTries){
 		Guess = GetValidGuess();
 	
 		//submit valid guess to the game
@@ -49,7 +51,7 @@ void PlayGame()
 		//print number of bulls and cows
 	
 		std::cout << "Bulls = " << BullCowCount.Bulls;
-		std::cout << ". Cows = " << BullCowCount.Cows << std::endl;
+		std::cout << ". Cows\n = " << BullCowCount.Cows << std::endl;
 
 	}
 
@@ -59,7 +61,7 @@ void PlayGame()
 void PrintIntro() {
 
 	// TODO change to different words
-	std::cout << "Hello to Bulls and Cows\n\n" << std::endl;
+	std::cout << "\nHello to Bulls and Cows\n\n" << std::endl;
 	std::cout << "The word as " << BCGame.GetHiddenWordLenght() << " letters\n";
 	std::cout << "Can you guess in " << BCGame.GetMaxTries();
 	std::cout << " tries the isogram I'm thinking of?" << std::endl;
@@ -81,7 +83,7 @@ FText GetValidGuess() {
 
 		std::getline(std::cin, Guess);
 
-		// TODO Se if you can put this in the object
+		// TODO See if you can put this in the object
 		Status = BCGame.CheckGuessValidity(Guess);
 		switch (Status)
 		{
@@ -122,4 +124,9 @@ bool AskToPlayAgain() {
 
 	return (Response[0] == 'y' || Response[0] == 'Y');
 
+}
+
+void PrintGameSummary() {
+
+	return;
 }

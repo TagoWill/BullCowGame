@@ -20,3 +20,9 @@ enum class EResetStatus
 	OK,
 	No_Hidden_Word
 };
+
+enum class EIsGameWon
+{
+	No,
+	Yes
+};
