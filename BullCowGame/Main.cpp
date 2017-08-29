@@ -41,6 +41,9 @@ void PlayGame()
 	FBullCowCount BullCowCount;
 
 
+	std::cout << "The word as " << BCGame.GetHiddenWordLenght() << " letters\n";
+
+
 	//loop asking for guesses while the game is NOT won
 	// and there still tries left
 	while(!BCGame.IsGameWon() && BCGame.GetCurrentTry() < MaxTries){
@@ -61,9 +64,8 @@ void PlayGame()
 
 void PrintIntro() {
 
-	// TODO change to different words
 	std::cout << "\nHello to Bulls and Cows\n\n" << std::endl;
-	std::cout << "The word as " << BCGame.GetHiddenWordLenght() << " letters\n";
+	//std::cout << "The word as " << BCGame.GetHiddenWordLenght() << " letters\n";
 	std::cout << "Can you guess in " << BCGame.GetMaxTries();
 	std::cout << " tries the isogram I'm thinking of?" << std::endl;
 	return;
@@ -80,7 +82,7 @@ FText GetValidGuess() {
 
 		std::cout << "Try ";
 		std::cout << CurrentTry;
-		std::cout << ". Enter your guess: ";
+		std::cout << " of " << BCGame.GetMaxTries() << ". Enter your guess: ";
 
 		std::getline(std::cin, Guess);
 
@@ -89,29 +91,28 @@ FText GetValidGuess() {
 		switch (Status)
 		{
 		case EGuessStatus::Not_Isogram:
-			std::cout << "The word you wrote isnt an isogram\n";
+			std::cout << "The word you wrote isnt an isogram\n\n";
 
 			break;
 		case EGuessStatus::Not_Lowercase:
-			std::cout << "The word you wrote is not in lowercase\n";
+			std::cout << "The word you wrote is not in lowercase\n\n";
 
 			break;
 		case EGuessStatus::To_Long:
 			std::cout << "The word you wrote is to long\n";
 			std::cout << "Please insert a " << BCGame.GetHiddenWordLenght();
-			std::cout << " letter word\n";
+			std::cout << " letter word\n\n";
 
 			break;
 		case EGuessStatus::To_Short:
 			std::cout << "The word you wrote is to short\n";
 			std::cout << "Please insert a " << BCGame.GetHiddenWordLenght();
-			std::cout << " letter word\n";
+			std::cout << " letter word\n\n";
 
 			break;
 		default:
 			break;
 		}
-		std::cout << std::endl;
 	} while (Status != EGuessStatus::OK);
 	return Guess;
 }
@@ -130,10 +131,10 @@ bool AskToPlayAgain() {
 void PrintGameSummary() {
 
 	if (BCGame.IsGameWon()) {
-		std::cout << "\nYou win" << std::endl;
+		std::cout << "\nWell done - You win" << std::endl;
 	}
 	else {
-		std::cout << "\nYou lose" << std::endl;
+		std::cout << "\nBetter luck next time" << std::endl;
 	}
 
 	return;

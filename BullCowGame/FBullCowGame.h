@@ -34,8 +34,11 @@ private:
 	int32 MyMaxTries;
 	FString MyHidenWord;
 	bool bGameIsWon;
+	const int32 LENGHT_OF_ARRAY = 6;
+	FString WordsForTheGame[6] = { "vampire", "runes", "smoke", "foruns" , "planet", "ai"};
 
 	// helper functions
 	bool IsIsogram(FString) const;
 	bool IsLowercase(FString) const;
+	FString GetRandomWord();
 };

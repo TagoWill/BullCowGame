@@ -14,7 +14,7 @@ void FBullCowGame::Reset()
 {
 	constexpr int32 MAX_TRIES = 8;
 	constexpr int32 DEFAULT_CURRENT_TRY = 1;
-	const FString DEFAULT_HIDDEN_WORD = "planet";
+	const FString DEFAULT_HIDDEN_WORD = GetRandomWord();
 
 
 	MyMaxTries = MAX_TRIES;
@@ -111,4 +111,9 @@ bool FBullCowGame::IsLowercase(FString Word) const
 		}
 	}
 	return true;
+}
+
+FString FBullCowGame::GetRandomWord()
+{
+	return WordsForTheGame[rand() % LENGHT_OF_ARRAY];
 }
